@@ -5,7 +5,7 @@ import ua.kpi.charity.model.entities.EventStatus;
 
 import java.util.List;
 
-public interface EventDao {
+public interface EventDao extends GenericDao<Event> {
     List<Event> findByName (String name);
     List<Event> findByStatus(EventStatus status);
 }
