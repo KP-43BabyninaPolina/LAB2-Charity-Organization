@@ -9,6 +9,6 @@ public class ErrorMessages {
 
     public static final String DAO_ERROR = "Error in DAO";
     public static final String SERVICE_ERROR = "Error in service";
-    public static final String SERVICE_ERROR_USER_EXIST = "User with this phone number already exist";
+    public static final String SERVICE_ERROR_VOLUNTEER_EXIST = "User with this phone number already exist";
     public static final String NOT_EXCEPTED_ERROR = "Not excepted error. Try to do it later";
 }
