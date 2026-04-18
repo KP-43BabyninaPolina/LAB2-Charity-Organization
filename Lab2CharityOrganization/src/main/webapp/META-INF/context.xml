@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource
+            name="jdbc/charity_db"
+            auth="Container"
+            type="javax.sql.DataSource"
+            maxTotal="50"
+            maxIdle="30"
+            maxWaitMillis="10000"
+            username="postgres"
+            password="admin"
+            driverClassName="org.postgresql.Driver"
+            url="jdbc:postgresql://localhost:5432/charity_db"/>
+</Context>
