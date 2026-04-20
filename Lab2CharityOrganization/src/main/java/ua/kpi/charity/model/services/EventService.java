@@ -8,6 +8,7 @@ import ua.kpi.charity.model.entities.EventStatus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class EventService {
     private final DaoFactory daoFactory = DaoFactory.getInstance();
@@ -27,7 +28,14 @@ public class EventService {
         }
     }
 
-    public List<Event> getEventsForRegistration() {
+    public Optional<Event> getById(int id) {
+        try (DaoConnection connection = daoFactory.getConnection()) {
+            EventDao eventDao = daoFactory.createEventDao(connection);
+            return eventDao.findById(id);
+        }
+    }
+
+    public List<Event> getEventsForVolunteer() {
         try (DaoConnection connection = daoFactory.getConnection()) {
             EventDao eventDao = daoFactory.createEventDao(connection);
 

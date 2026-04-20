@@ -6,7 +6,6 @@ import ua.kpi.charity.model.entities.Volunteer;
 import ua.kpi.charity.model.dao.exceptions.DaoException;
 
 import java.sql.*;
-import java.util.List;
 import java.util.Optional;
 
 public class JdbcVolunteerDao extends AbstractJdbcDao<Volunteer> implements VolunteerDao {
@@ -97,11 +96,6 @@ public class JdbcVolunteerDao extends AbstractJdbcDao<Volunteer> implements Volu
     @Override
     protected String getSelectByIdQuery() {
         return SELECT_FROM_VOLUNTEER + WHERE_ID;
-    }
-
-    @Override
-    public List<Volunteer> findByLastName(String lastName) {
-        throw new UnsupportedOperationException();
     }
 
     @Override

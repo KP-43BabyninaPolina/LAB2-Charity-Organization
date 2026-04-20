@@ -8,6 +8,7 @@ import ua.kpi.charity.model.entities.EventStatus;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class JdbcEventDao extends AbstractJdbcDao<Event> implements EventDao {
     private static final String DELETE_EVENT_BY_ID =
@@ -22,9 +23,9 @@ public class JdbcEventDao extends AbstractJdbcDao<Event> implements EventDao {
             "WHERE id = ? ";
     private static final String WHERE_STATUS =
             "WHERE status = ? ";
-
     private static final String UPDATE_EVENT =
             "UPDATE event SET name = ?, status = ? WHERE id = ? ";
+    private static final String FIND_BY_ID_QUERY = "SELECT * FROM event WHERE id = ?";
 
     private static final String ID = "id";
     private static final String NAME = "name";
@@ -93,8 +94,22 @@ public class JdbcEventDao extends AbstractJdbcDao<Event> implements EventDao {
     }
 
     @Override
-    public List<Event> findByName(String name) {
-        throw new UnsupportedOperationException();
+    public Optional<Event> findById(int id) {
+        Optional<Event> event = Optional.empty();
+
+        try (PreparedStatement query = connection.prepareStatement(FIND_BY_ID_QUERY)) {
+            query.setInt(1, id);
+
+            try (ResultSet resultSet = query.executeQuery()) {
+                if (resultSet.next()) {
+                    event = Optional.of(getEventFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+
+        return event;
     }
 
     @Override
