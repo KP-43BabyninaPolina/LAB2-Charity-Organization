@@ -12,10 +12,6 @@ public class PhoneNumberValidator implements Validator<String> {
         phonePattern = Pattern.compile(RegExp.PHONE);
     }
 
-    public PhoneNumberValidator(String phoneRegex) {
-        phonePattern = Pattern.compile(phoneRegex);
-    }
-
     @Override
     public boolean validate(String phoneNumber, Errors errors) {
         if (!validate(phoneNumber)) {
